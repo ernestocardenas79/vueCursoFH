@@ -67,7 +67,6 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
 .entry-container {
   border-bottom: 1px solid #2c3e50;

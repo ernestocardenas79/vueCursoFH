@@ -1,4 +1,5 @@
 export const getEntriesByTerm = (state) => (term = "") => {
+  console.log("gette", state.entries);
   if (term.length === 0) return state.entries;
 
   return state.entries.filter((entry) =>

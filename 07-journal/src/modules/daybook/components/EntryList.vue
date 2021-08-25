@@ -11,7 +11,7 @@
     </div>
 
     <div class="entry-scrollarea">
-      <Entry v-for="entry in entriesByTerm" :key="entry" :entry="entry" />
+      <Entry v-for="entry in entriesByTerm" :key="entry.id" :entry="entry" />
     </div>
   </div>
 </template>
