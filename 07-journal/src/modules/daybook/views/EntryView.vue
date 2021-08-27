@@ -27,12 +27,12 @@
       class="img-thumbnail"
     />
   </template>
-  <Fab icon="fa-save" />
+  <Fab icon="fa-save" @on:click="saveEntry" />
 </template>
 
 <script>
 import { defineAsyncComponent } from "@vue/runtime-core";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import getDayMonthYear from "../helpers/getDayMonthYear";
 export default {
   props: {
@@ -65,11 +65,27 @@ export default {
     },
   },
   methods: {
+    ...mapActions("journal", ["updateEntries"]),
     loadEntry() {
-      const entry = this.getEntriesById(this.id);
-      if (!entry) return this.$router.push({ name: "no-entry" });
+      let entry;
+      if (this.id === "new") {
+        entry = {
+          text: "",
+          date: new Date().getTime(),
+        };
+      } else {
+        entry = this.getEntriesById(this.id);
+        if (!entry) return this.$router.push({ name: "no-entry" });
+      }
 
       this.entry = entry;
+    },
+    async saveEntry() {
+      if (this.entry.id) {
+        this.updateEntries(this.entry);
+      } else {
+        console.log("POst Nueva entrada");
+      }
     },
   },
   created() {
