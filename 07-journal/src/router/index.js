@@ -12,7 +12,7 @@ const routes = [
     component: () =>
       import(/*webpackChunkName About*/ import("../views/About")),
   },
-  ...daybookRoutes,
+  { ...daybookRoutes },
 ];
 
 const router = createRouter({
