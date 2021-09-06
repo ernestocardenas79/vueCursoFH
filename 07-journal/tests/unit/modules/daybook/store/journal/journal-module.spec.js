@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 
-import { journalState } from "../../../../../mock-data/test-journal-state";
 import journal from "@/modules/daybook/store/journal";
+import { journalState } from "../../../../mock-data/test-journal-state";
 
 const createVuexStore = (initialState) =>
   createStore({
@@ -110,5 +110,27 @@ describe("Vuex- Pruebas en el journal MOdule", () => {
     expect(
       store.state.journal.entries.find((e) => e.id === updateEntry.id)
     ).toEqual(updateEntry);
+  });
+
+  test("actions: createEntry deteleEntry", async () => {
+    const store = createVuexStore({ isLoading: true, entries: [] });
+    const newEntry = {
+      date: 1630518276610,
+      text: "Nueva entrada desde las pruebas",
+    };
+
+    const newEntryId = await store.dispatch("journal/createEntry", newEntry);
+
+    expect(typeof newEntryId).toBe("string");
+
+    expect(
+      store.state.journal.entries.find((e) => e.id === newEntryId)
+    ).toBeTruthy();
+
+    await store.dispatch("journal/deleteEntry", newEntryId);
+
+    expect(
+      store.state.journal.entries.find((e) => e.id === newEntryId)
+    ).toBeFalsy();
   });
 });
