@@ -28,13 +28,27 @@ const routes = [
     path: "/pokemon-search",
     name: "pokemon-search",
     component: () =>
-      import(/* webpackChunkName: "user" */ "../views/SearchPokemon.vue"),
+      import(
+        /* webpackChunkName: "SearchPokemon" */ "../views/SearchPokemon.vue"
+      ),
   },
   {
     path: "/pokemon/:id",
     name: "pokemon-id",
     component: () =>
-      import(/* webpackChunkName: "user" */ "../views/Pokemon.vue"),
+      import(/* webpackChunkName: "Pokemon" */ "../views/Pokemon.vue"),
+  },
+  {
+    path: "/todo",
+    name: "todo",
+    component: () =>
+      import(/* webpackChunkName: "TodoVuex" */ "../views/TodoVuex.vue"),
+  },
+  {
+    path: "/slots",
+    name: "slots",
+    component: () =>
+      import(/* webpackChunkName: "TodoVuex" */ "../views/CustomSlots.vue"),
   },
 ];
 
