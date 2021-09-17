@@ -1,6 +1,5 @@
 export default {
   name: "daybook",
-  path: "/daybook",
   component: () =>
     import(
       /*webpacjChunkName daybook*/ "@/modules/daybook/layout/DayBookLayout.vue"
