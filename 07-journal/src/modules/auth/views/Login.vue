@@ -47,8 +47,8 @@ export default {
     const router = useRouter();
 
     const loginForm = ref({
-      email: "ernesto@cardenas.com",
-      password: "123456",
+      email: "",
+      password: "",
     });
 
     return {
